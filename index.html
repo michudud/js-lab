@@ -8,6 +8,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="ReflexMeter">
+        <div class="ControlPanel">
+            <button class="Start" onclick="startGame()">START</button>
+            <button class="Stop" onclick="stopGame()">STOP</button>
+        </div>
+        <div class="GameArea" id="gameArea" onclick="gameAreaClick()">
+
+        </div>
+        <div class="Stats">
+            <div class="Best">
+                <label for="best">Best time</label><br>
+                <input type="text" id="best" name="best_time" disabled="disabled">
+            </div>
+            <div class="Worst">
+                <label for="worst">Worst time</label><br>
+                <input type="text" id="worst" name="worst_time" disabled="disabled">
+            </div>
+            <div class="Average">
+                <label for="average">Average time</label><br>
+                <input type="text" id="average" name="average_time" disabled="disabled">
+            </div>
+            <div class="Misses">
+                <label for="misses">Missclicks</label><br>
+                <input type="text" id="misses" name="miss_clicks" disabled="disabled">
+            </div>
+        </div>
+    </div>
 </body>
 </html>
