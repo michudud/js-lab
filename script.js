@@ -36,8 +36,8 @@ async function startGame(){
 async function stopGame(){
     if(gameStarted){
         gameStarted = false;
-        document.getElementById("gameArea").style.backgroundColor = "green"
-        possibleToClick = true       
+        document.getElementById("gameArea").style.backgroundColor = "black"
+        possibleToClick = false       
     }
 }
 
