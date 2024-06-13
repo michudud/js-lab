@@ -7,14 +7,37 @@ let missClicks = 0;
 
 async function startGame(){
     if(!gameStarted){
-        for(let i = 0; i <5 ; i++){
-            let randomTime = Math.round(Math.random() * (5000 - 1000) + 1000)
-            await delay(randomTime)
-            changeBgColor()
-            date = new Date()
-            await waitForUser()
-            console.log(times)
+        gameStarted = true;
+        times = []
+        missClicks = 0
+        document.getElementById("best").value = ""
+        document.getElementById("worst").value = ""
+        document.getElementById("average").value = ""
+        document.getElementById("misses").value = ""
+        let noOfPlays = document.getElementById("Number").value
+        for(let i = 0; i <noOfPlays ; i++){
+            if(gameStarted){
+                let randomTime = Math.round(Math.random() * (5000 - 1000) + 1000)
+                await delay(randomTime)
+                if(gameStarted){
+                    changeBgColor()
+                    date = new Date()
+                    await waitForUser()
+                }               
+            }else{
+                break
+            }
+            
         }
+        stopGame()
+    }
+}
+
+async function stopGame(){
+    if(gameStarted){
+        gameStarted = false;
+        document.getElementById("gameArea").style.backgroundColor = "green"
+        possibleToClick = true       
     }
 }
 
@@ -46,11 +69,14 @@ function getRandomColor() {
   }
 
   function gameAreaClick(){
+    if(gameStarted){
     if(possibleToClick){
         possibleToClick = false
         let clickTime = new Date().getTime() - date.getTime()
         times.push(clickTime)
-        times.sort()
+        times.sort(function(a,b){
+            return a-b;
+        })
         document.getElementById("best").value = times[0]
         document.getElementById("worst").value = times[times.length -1]
         const average = array => array.reduce((a, b) => a + b) / array.length;
@@ -59,4 +85,5 @@ function getRandomColor() {
         missClicks++
         document.getElementById("misses").value = missClicks
     }
+}
   }
