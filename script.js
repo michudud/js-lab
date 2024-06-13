@@ -81,6 +81,14 @@ function getRandomColor() {
         document.getElementById("worst").value = times[times.length -1]
         const average = array => array.reduce((a, b) => a + b) / array.length;
         document.getElementById("average").value = Math.round(average(times))
+        let record = document.getElementById("record").value
+        if(record){
+            if(clickTime<record){
+                document.getElementById("record").value = clickTime
+            }
+        }else{
+            document.getElementById("record").value = clickTime
+        }
     }else{
         missClicks++
         document.getElementById("misses").value = missClicks
